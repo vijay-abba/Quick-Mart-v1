@@ -63,7 +63,7 @@ class RegistrationForm:
         # for Devvelopment only
         all_user_file = file_path / "user-data.txt"
         with open(all_user_file, "a") as f:
-            f.write(f" {self.username} | {self.password} | {self.role}")
+            f.write(f" {self.username} | {self.password} | {self.role}\n")
 
     def isUserExist(self):
         file_path = Path("employees")
