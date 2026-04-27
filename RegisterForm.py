@@ -97,11 +97,11 @@ class RegistrationForm:
         file_path = Path("employees")
         file_name = file_path / f"{self.username}.txt"
         user_dict = {
-            "Username": self.username,
-            "Password": self.hash_password(),
-            "Role": self.role,
+            "username": self.username,
+            "password": self.hash_password(),
+            "role": self.role,
+            "wrong": 0
         }
-        print(user_dict)
         user_dict_json = json.dumps(user_dict)
 
         with open(file_name, "w") as f:

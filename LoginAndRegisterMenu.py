@@ -1,4 +1,5 @@
 from RegisterForm import RegistrationForm
+from LoginForm import LoginForm
 
 
 class LoginAndRegisterMenu:
@@ -35,14 +36,16 @@ class LoginAndRegisterMenu:
     def define_operation(self):
 
         if self.action_choice == "1":
+            print("\n--- Register ---")
             r1 = RegistrationForm()
             if r1:
                 self.__init__()
+
         elif self.action_choice == "2":
-            # Login
-            pass
+            print("\n--- Login ---")
+            l1 = LoginForm()
         elif self.action_choice == "3":
-            print("\n Exited App")
+            print("\n--- Exit ---")
         else:
             print("INVALID AGAIN")
 
