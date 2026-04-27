@@ -13,7 +13,8 @@ class ProductMenu:
             self.action_choice_validate_fn, action_indexs, action_message
         )
 
-        self.define_operation()
+        result = self.define_operation()
+        self.result = result
 
     def action_choice_validate_fn(self, index_list, message):
         action_list = index_list
@@ -48,7 +49,7 @@ class ProductMenu:
             price = input("Price: ")
 
             p1 = Product()
-            p1.add(name, quantity, price)
+            return p1.add(name, quantity, price)
 
         elif product_type == "2":
             name = input("Name:")
@@ -57,7 +58,7 @@ class ProductMenu:
             expiry_date = input("Expiry Date: ")
 
             pp2 = PerishableProduct()
-            pp2.add(name, quantity, price, expiry_date)
+            return pp2.add(name, quantity, price, expiry_date)
 
         elif product_type == "3":
 
@@ -67,7 +68,7 @@ class ProductMenu:
             warranty = input("Warranty: ")
 
             ep3 = ElectronicProduct()
-            ep3.add(name, quantity, price, warranty)
+            return ep3.add(name, quantity, price, warranty)
 
         elif product_type == "4":
             name = input("Name:")
@@ -77,7 +78,7 @@ class ProductMenu:
             material = input("Material: ")
 
             ecp4 = ClothingProduct()
-            ecp4.add(name, quantity, price, size, material)
+            return ecp4.add(name, quantity, price, size, material)
 
     def update_product_details(self, product_type):
         if product_type == "1":
@@ -87,7 +88,7 @@ class ProductMenu:
             price = input("Price: ")
 
             p1 = Product()
-            p1.update(id, name, quantity, price)
+            return p1.update(id, name, quantity, price)
 
         elif product_type == "2":
             id = input("Id:")
@@ -97,7 +98,7 @@ class ProductMenu:
             expiry_date = input("Expiry Date: ")
 
             pp2 = PerishableProduct()
-            pp2.update(id, name, quantity, price, expiry_date)
+            return pp2.update(id, name, quantity, price, expiry_date)
 
         elif product_type == "3":
             id = input("Id:")
@@ -107,7 +108,7 @@ class ProductMenu:
             warranty = input("Warranty: ")
 
             ep3 = ElectronicProduct()
-            ep3.update(id, name, quantity, price, warranty)
+            return ep3.update(id, name, quantity, price, warranty)
 
         elif product_type == "4":
             id = input("Id:")
@@ -118,19 +119,19 @@ class ProductMenu:
             material = input("Material: ")
 
             ecp4 = ClothingProduct()
-            ecp4.update(id, name, quantity, price, size, material)
+            return ecp4.update(id, name, quantity, price, size, material)
 
     def delete_product_details(self):
         id = input("ID: ")
         p1 = Product()
         isExist = list(filter(lambda x: x["id"] == id, p1.product_list))
         if len(isExist) == 1 and isExist[0]["id"] == id:
-            p1.delete(id)
+            return p1.delete(id)
 
     def search_products(self):
         name = input("Name: ")
         p1 = Product()
-        p1.search(name)
+        return p1.search(name)
 
     def define_operation(self):
         # Task 1. validate input data in add_product_details and update_product_details
@@ -139,25 +140,26 @@ class ProductMenu:
 
         if self.action_choice == "1":
             product_type_choice = self.prodoct_choice_fn()
-            self.add_product_details(product_type_choice)
+            return self.add_product_details(product_type_choice)
 
         elif self.action_choice == "2":
             product_type_choice = self.prodoct_choice_fn()
-            self.update_product_details(product_type_choice)
+            return self.update_product_details(product_type_choice)
 
         elif self.action_choice == "3":
-            self.delete_product_details()
+            return self.delete_product_details()
 
         elif self.action_choice == "4":
-            self.search_products()
+            return self.search_products()
 
         elif self.action_choice == "5":
             p1 = Product()
-            p1.view_all()
+            return p1.view_all()
 
         elif self.action_choice == "6":
             p1 = Product()
-            p1.lowstock()
+            return p1.lowstock()
+
         else:
             print("INVALID AGAIN")
 

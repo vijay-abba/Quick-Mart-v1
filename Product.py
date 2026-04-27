@@ -60,6 +60,7 @@ class Product:
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"ADDED! ID {id}")
+        return True
 
     def update(self, id, name, quantity, price):
 
@@ -74,6 +75,7 @@ class Product:
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"UPDATED! ID {id}")
+        return True
 
     def delete(self, id):
 
@@ -83,6 +85,7 @@ class Product:
         self.writ_to_file()
 
         print(f"DELETED! ID {id}")
+        return True
 
     def search(self, name):
         filtered_list = list(
@@ -99,11 +102,13 @@ class Product:
 
         for item in filtered_list:
             print(self.print_key_values(item))
+        return True
 
     def view_all(self):
         print(f"\n Found {len(self.product_list)} results: \n")
         for i in self.product_list:
             print(self.print_key_values(i))
+        return True
 
     def lowstock(self):
         
@@ -113,6 +118,7 @@ class Product:
         print(f"\n Found {len(filtered_list)} results: \n")
         for item in filtered_list:
             print(self.print_key_values(item))
+        return True
 
 
 class PerishableProduct(Product):
@@ -134,6 +140,7 @@ class PerishableProduct(Product):
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"ADDED! ID {id}")
+        return True
 
     def update(self, id, name, quantity, price, expiry_date):
 
@@ -149,6 +156,7 @@ class PerishableProduct(Product):
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"UPDATED! ID {id}")
+        return True
 
 
 class ElectronicProduct(Product):
@@ -170,6 +178,7 @@ class ElectronicProduct(Product):
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"ADDED! ID {id}")
+        return True
 
     def update(self, id, name, quantity, price, warranty):
 
@@ -186,6 +195,7 @@ class ElectronicProduct(Product):
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"UPDATED! ID {id}")
+        return True
 
 
 class ClothingProduct(Product):
@@ -207,6 +217,7 @@ class ClothingProduct(Product):
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"ADDED! ID {id}")
+        return True
 
     def update(self, id, name, quantity, price, size, material):
         new_product_obj = {
@@ -223,3 +234,7 @@ class ClothingProduct(Product):
         self.product_list.append(new_product_obj)
         self.writ_to_file()
         print(f"UPDATED! ID {id}")
+        return True
+
+
+

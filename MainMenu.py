@@ -49,27 +49,29 @@ class MainMenu:
         if self.action_choice == "1":
             print("Inventary management")
             p1 = ProductMenu(self.user_obj)
+            if p1.result:
+                self.__init__(self.user_obj)
 
         elif self.action_choice == "2":
-            print("Inventary management")
+            print("New Sale management")
 
         elif self.action_choice == "3":
-            print("Inventary management")
+            print("Order History management")
 
         elif self.action_choice == "4":
-            print("Inventary management")
+            print("Reports management")
 
         elif self.action_choice == "5":
-            print("Inventary management")
+            print("Coupons management")
 
         elif self.action_choice == "6":
-            print("Inventary management")
+            print("User Mgmt  management")
 
         elif self.action_choice == "7":
-            print("Inventary management")
+            print("Logout management")
 
         elif self.action_choice == "8":
-            print("Inventary management")
+            print("Exit management")
 
         else:
             print("INVALID AGAIN")
