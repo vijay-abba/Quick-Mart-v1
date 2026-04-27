@@ -2,11 +2,13 @@ from pathlib import Path
 import json
 import random
 
-file_path = Path("data")
-file_name = file_path / f"products.txt"
+
 
 
 class Product:
+
+    file_path = Path("data")
+    file_name = file_path / f"products.txt"
 
     def __init__(self):
         # connect to database / product txt
@@ -14,14 +16,19 @@ class Product:
         self.read_from_file()
 
     def read_from_file(self):
-        with open(file_name, "r") as f:
+        # if no file create empty
+        if not self.file_name.is_file():
+            with open(Product.file_name, "w") as f:
+                f.write(json.dumps([]))
+
+        with open(Product.file_name, "r") as f:
             str_product_list = f.readline()
             product_list = json.loads(str_product_list)
             self.product_list = product_list
 
     def writ_to_file(self):
         str_product_list = json.dumps(self.product_list)
-        with open(file_name, "w") as f:
+        with open(Product.file_name, "w") as f:
             f.write(str_product_list)
         self.read_from_file()
 

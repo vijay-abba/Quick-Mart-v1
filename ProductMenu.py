@@ -3,11 +3,11 @@ from Product import Product, PerishableProduct, ElectronicProduct, ClothingProdu
 
 class ProductMenu:
 
-    def __init__(self):
+    def __init__(self, user_obj):
+        self.user_obj = user_obj
+        # print(user_obj)
         action_indexs = ["1", "2", "3", "4", "5", "6"]
-        action_message = (
-            "\n===== Inventory =====\n\n\n1.Add  2.Update  3.Delete 4.Search  5.View All  6.Low Stock:\n"
-        )
+        action_message = "\n===== Inventory =====\n\n\n1.Add  2.Update  3.Delete 4.Search  5.View All  6.Low Stock:\n"
 
         self.action_choice = self.run_until_valid(
             self.action_choice_validate_fn, action_indexs, action_message
@@ -34,7 +34,9 @@ class ProductMenu:
 
     def prodoct_choice_fn(self):
         product_index = ["1", "2", "3", "4"]
-        product_message = "\n--- Add Product ---\n\n1.General 2.Perishable 3.Electronic 4.Clothing:\n"
+        product_message = (
+            "\n--- Add Product ---\n\n1.General 2.Perishable 3.Electronic 4.Clothing:\n"
+        )
         return self.run_until_valid(
             self.action_choice_validate_fn, product_index, product_message
         )
@@ -160,4 +162,4 @@ class ProductMenu:
             print("INVALID AGAIN")
 
 
-pm = ProductMenu()
+# pm = ProductMenu()

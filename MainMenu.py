@@ -1,3 +1,5 @@
+from ProductMenu import ProductMenu
+
 class MainMenu:
 
     def __init__(self, user_obj):
@@ -8,6 +10,8 @@ class MainMenu:
 
         self.load_staff_or_admin()
 
+        result = self.define_operation()
+
     def load_staff_or_admin(self):
         if self.user_obj["role"] == "staff":
             menu = "\n1. Inventory Management\n2. New Sale\n3. Order History\n4. Reports\n5. Logout\n6. Exit\n\nEnter choice: "
@@ -15,7 +19,7 @@ class MainMenu:
             self.action_choice = self.run_until_valid(
                 self.action_choice_validate_fn, action_index, menu
             )
-            print("selected", self.action_choice)
+            # print("selected", self.action_choice)
 
         elif self.user_obj["role"] == "admin":
             menu = "\n1. Inventory Management\n2. New Sale\n3. Order History\n4. Reports\n5. Coupons       [Admin only]\n6. User Mgmt     [Admin only]\n7. Logout\n8. Exit\n\nEnter choice: "
@@ -23,7 +27,7 @@ class MainMenu:
             self.action_choice = self.run_until_valid(
                 self.action_choice_validate_fn, action_index, menu
             )
-            print("selected", self.action_choice)
+            # print("selected", self.action_choice)
 
     def action_choice_validate_fn(self, index_list, message):
         action_list = index_list
@@ -40,11 +44,41 @@ class MainMenu:
             return self.run_until_valid(fn, list_indexs, messages)
         return result
 
+    def define_operation(self):
 
-user_object = {
-    "username": "vijay1",
-    "password": "66ded1eebda7c3a9257a167f94ceebc7:bd88a1d0359a12ee29444089664844ee82223df6dcac8963cf7eb578ff70704e",
-    "role": "admin",
-    "wrong": 0,
-}
-m1 = MainMenu(user_object)
+        if self.action_choice == "1":
+            print("Inventary management")
+            p1 = ProductMenu(self.user_obj)
+
+        elif self.action_choice == "2":
+            print("Inventary management")
+
+        elif self.action_choice == "3":
+            print("Inventary management")
+
+        elif self.action_choice == "4":
+            print("Inventary management")
+
+        elif self.action_choice == "5":
+            print("Inventary management")
+
+        elif self.action_choice == "6":
+            print("Inventary management")
+
+        elif self.action_choice == "7":
+            print("Inventary management")
+
+        elif self.action_choice == "8":
+            print("Inventary management")
+
+        else:
+            print("INVALID AGAIN")
+
+
+# user_object = {
+#     "username": "vijay1",
+#     "password": "66ded1eebda7c3a9257a167f94ceebc7:bd88a1d0359a12ee29444089664844ee82223df6dcac8963cf7eb578ff70704e",
+#     "role": "admin",
+#     "wrong": 0,
+# }
+# m1 = MainMenu(user_object)

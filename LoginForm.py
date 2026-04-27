@@ -18,7 +18,7 @@ class LoginForm:
             role = self.user_obj["role"]
 
             print(f"\nWelcome, {username}! (Role: {role})")
-            print(self.user_obj)
+            # print(self.user_obj)
             m1 = MainMenu(self.user_obj)
 
 
