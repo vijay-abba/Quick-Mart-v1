@@ -4,6 +4,7 @@ import json
 import hashlib
 import hmac
 
+from MainMenu import MainMenu
 
 class LoginForm:
 
@@ -17,6 +18,10 @@ class LoginForm:
             role = self.user_obj["role"]
 
             print(f"\nWelcome, {username}! (Role: {role})")
+            print(self.user_obj)
+            m1 = MainMenu(self.user_obj)
+
+
 
     def run_until_valid(self, fn):
         if self.locked == "yes":
