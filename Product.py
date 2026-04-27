@@ -3,8 +3,6 @@ import json
 import random
 
 
-
-
 class Product:
 
     file_path = Path("data")
@@ -111,7 +109,7 @@ class Product:
         return True
 
     def lowstock(self):
-        
+
         filtered_list = list(
             filter(lambda x: int(x["quantity"]) < 5, self.product_list)
         )
@@ -235,6 +233,3 @@ class ClothingProduct(Product):
         self.writ_to_file()
         print(f"UPDATED! ID {id}")
         return True
-
-
-
