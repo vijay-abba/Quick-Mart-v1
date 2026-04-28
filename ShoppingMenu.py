@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 import random
-from datetime import date
+from datetime import datetime, date, time
 
 
 class ShoppingMenu:
@@ -95,7 +95,8 @@ class ShoppingMenu:
             heading = f"{divider}\n{heading}\n{divider}"
             print(heading)
 
-            date_string = f"Date: {date.today()}"
+            now = datetime.today()
+            date_string = f"Date: {now.date()}"
             user_string = f"Cahier: {self.user_obj['username']}"
             date_user_text = f"{date_string.ljust(20)}{user_string.rjust(19)}"
             print(date_user_text)
@@ -157,6 +158,8 @@ class ShoppingMenu:
             print(f"GST (18%):{f_gst_amt.rjust(27)}")
 
             grand_total = new_total + gst_amt
+            # save_grand total in self 
+
             f_grand_total = f"{grand_total:.2f}"
             # print(f_grand_total)
             print(f"GRAND TOTAL:{f_grand_total.rjust(25)}")
@@ -229,17 +232,35 @@ class ShoppingMenu:
             # orders schema
             # id, name, total amount , date , casier(staff)
 
-            coupon_code = input("Coupon code (or skip): ")
-            customer_name = input("Customer name: ")
-
             # TASK should be replaces
+            current_order_value = 5000
+            # current_order_value = 500
+            
+            # TASK  get Coupons 
             avaliable_coupons = [
                 {
-                    "code": "SAVED10",
+                    "code": "SAVE10",
+                    "type": 1,
+                    "value": "10",
+                    "min-order": "1000",
+                    "expiry": "2026-04-28",
+                    "usage-limit": "100",
+                },
+                {
+                    "code": "SAVE20",
                     "type": 1,
                     "value": "10",
                     "min-order": "1000",
                     "expiry": "2026-12-31",
+                    "usage-limit": "0",
+                },
+                {
+                    "code": "SAVE30",
+                    "type": 1,
+                    "value": "10",
+                    "min-order": "1000",
+                    "expiry": "2025-12-31",
+                    "usage-limit": "40",
                 },
                 {
                     "code": "OFF500",
@@ -247,13 +268,62 @@ class ShoppingMenu:
                     "value": "500",
                     "min-order": "1000",
                     "expiry": "2026-12-31",
+                    "usage-limit": "100",
                 },
             ]
-            
+
             #  Coupon: SAVE10
             # Coupon applied! ₹500 off
 
-            
+            coupon_code = input("Coupon code (or skip): ")
+            # customer_name = input("Customer name: ")
+            coupone_code_list = list(map(lambda x: x["code"], avaliable_coupons))
+
+            print(coupone_code_list)
+            if coupon_code != "":
+                print("Apply Coupon here ")
+                if coupon_code in coupone_code_list:
+                    print("COUPON IS PRESENT ")
+
+                    valid_coupon_obj = list(
+                        filter(lambda x: x["code"] == coupon_code, avaliable_coupons)
+                    )[0]
+                    expiry_date = valid_coupon_obj["expiry"]
+                    min_order_value = int(valid_coupon_obj["min-order"])
+                    usage_limit = int(valid_coupon_obj["usage-limit"])
+
+                    expiry_date_obj = datetime.fromisoformat(expiry_date)
+                    hours_24 = 86400
+                    expiry_date_timestamp = expiry_date_obj.timestamp() + hours_24
+                    print("expiry_date_timestamp", expiry_date_timestamp)
+
+                    today = date.today()
+                    today_date = datetime.combine(today, time.min)
+                    today_timestamp = today_date.timestamp()
+                    print("today_timestamp", today_timestamp)
+
+                    if expiry_date_timestamp < today_timestamp:
+                        print("your coupon expired")
+                    else:
+                        print("coupon is valid")
+                        if current_order_value < min_order_value:
+                            print(
+                                f"minium order value should be at least{min_order_value}"
+                            )
+                        else:
+                            print("you have min order value amount")
+                            print(usage_limit)
+                            if usage_limit < 1:
+                                print("coupon limit is completd")
+                            else:
+                                print("You can use the coupoin ")
+                                # check type 1 or type 2 
+                                # if type 1 cal percentage 
+
+                                #if 2 subtact  amount for grand total 
+
+            else:
+                print("Direct Checkout")
 
             print("Checkout ")
             return True

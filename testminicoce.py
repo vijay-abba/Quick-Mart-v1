@@ -1,9 +1,8 @@
+from datetime import datetime
 
-total = 1000
+# 1. Extract just the date
+today = datetime.now()
+print(today)
 
-percentage = 15 
 
-
-amount = (percentage/100) * total
-print(amount)
 
